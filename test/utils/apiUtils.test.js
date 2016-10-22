@@ -1,13 +1,13 @@
-var assert = require('assert');
-var api = require('../../src/js/utils/apiUtil');
-var request = require('superagent');
-var sinon = require('sinon');
+import assert from 'assert';
+import api from '../../src/js/utils/apiUtil';
+import request from 'superagent';
+import sinon from 'sinon';
 
 // shared
 // call _ajaxRequest
 function shouldCallAjaxRequest(testTarget, method, endpoint) {
-  describe('', function() {
-    afterEach(function() {
+  describe('',() => {
+    afterEach(() => {
       api._ajaxRequest.restore();
     });
 
@@ -15,8 +15,8 @@ function shouldCallAjaxRequest(testTarget, method, endpoint) {
     let params = {params: 'params'};
     let token = 'token';
 
-    describe('when it gets token', function() {
-      it('should call _ajaxRequest once with correct args', function() {
+    describe('when it gets token', () => {
+      it('should call _ajaxRequest once with correct args', () => {
         // define spy
         let spy = sinon.spy(api, '_ajaxRequest');
 
@@ -29,8 +29,8 @@ function shouldCallAjaxRequest(testTarget, method, endpoint) {
       });
     });
 
-    describe('when it does not get token', function() {
-      it('should call _ajaxRequest once with correct args', function() {
+    describe('when it does not get token', () => {
+      it('should call _ajaxRequest once with correct args', () => {
         // define spy
         let spy = sinon.spy(api, '_ajaxRequest');
 
@@ -46,8 +46,8 @@ function shouldCallAjaxRequest(testTarget, method, endpoint) {
 }
 
 
-describe('apiUtils', function() {
-  describe('ajaxGet', function() {
+describe('apiUtils', () => {
+  describe('ajaxGet', () => {
     // test variables
     let method = request.get;
     let endpoint = 'http://httpbin.org/get';
@@ -56,7 +56,7 @@ describe('apiUtils', function() {
     shouldCallAjaxRequest('ajaxGet', method, endpoint);
   });
 
-  describe('ajaxPost', function() {
+  describe('ajaxPost', () => {
     // test variables
     let method = request.post;
     let endpoint = 'http://httpbin.org/post';
@@ -65,7 +65,7 @@ describe('apiUtils', function() {
     shouldCallAjaxRequest('ajaxPost', method, endpoint);
   });
 
-  describe('ajaxDelete', function() {
+  describe('ajaxDelete', () => {
     // test variables
     let method = request.del;
     let endpoint = 'http://httpbin.org/delete';
@@ -74,7 +74,7 @@ describe('apiUtils', function() {
     shouldCallAjaxRequest('ajaxDelete', method, endpoint);
   });
 
-  describe('ajaxPatch', function() {
+  describe('ajaxPatch', () => {
     // test variables
     let method = request.patch;
     let endpoint = 'http://httpbin.org/patch';
@@ -84,9 +84,9 @@ describe('apiUtils', function() {
   });
 
 
-  describe('_makeHeader', function() {
-    describe('when it gets truthy token', function() {
-      it('should return object has Authorization property', function() {
+  describe('_makeHeader', () => {
+    describe('when it gets truthy token', () => {
+      it('should return object has Authorization property', () => {
         let token = 'token';
         let expected = {Authorization: token};
 
@@ -94,8 +94,8 @@ describe('apiUtils', function() {
       });
     });
 
-    describe('when it gets falsy token', function() {
-      it('should return empty object', function() {
+    describe('when it gets falsy token', () => {
+      it('should return empty object', () => {
         let token = undefined;
         let expected = {};
 
@@ -105,13 +105,13 @@ describe('apiUtils', function() {
   });
 
 
-  describe('_ajaxRequest', function() {
-    afterEach(function() {
+  describe('_ajaxRequest', () => {
+    afterEach(() => {
       api._makeHeader.restore();
     });
 
-    describe('success call', function() {
-      it('should return Promise object and call _makeHeader once with token', function() {
+    describe('success call', () => {
+      it('should return Promise object and call _makeHeader once with token', () => {
         // test variables
         let method = request.get;
         let endpoint = 'http://httpbin.org/get';
@@ -134,8 +134,8 @@ describe('apiUtils', function() {
       });
     });
 
-    describe('failed call', function() {
-      it('should return Promise object and call _makeHeader once with token', function() {
+    describe('failed call', () => {
+      it('should return Promise object and call _makeHeader once with token', () => {
         // test variables
         let method = request.post;
         let endpoint = 'http://httpbin.org/get';
