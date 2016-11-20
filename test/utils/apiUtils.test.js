@@ -12,13 +12,13 @@ function shouldCallAjaxRequest(testTarget, method, endpoint) {
     });
 
     // common test variables
-    let params = {params: 'params'};
-    let token = 'token';
+    const params = {params: 'params'};
+    const token = 'token';
 
     describe('when it gets token', () => {
       it('should call _ajaxRequest once with correct args', () => {
         // define spy
-        let spy = sinon.spy(api, '_ajaxRequest');
+        const spy = sinon.spy(api, '_ajaxRequest');
 
         // call test target method
         api[testTarget](endpoint, params, token);
@@ -32,7 +32,7 @@ function shouldCallAjaxRequest(testTarget, method, endpoint) {
     describe('when it does not get token', () => {
       it('should call _ajaxRequest once with correct args', () => {
         // define spy
-        let spy = sinon.spy(api, '_ajaxRequest');
+        const spy = sinon.spy(api, '_ajaxRequest');
 
         // call test target method
         api[testTarget](endpoint, params);
@@ -49,8 +49,8 @@ function shouldCallAjaxRequest(testTarget, method, endpoint) {
 describe('apiUtils', () => {
   describe('ajaxGet', () => {
     // test variables
-    let method = request.get;
-    let endpoint = 'http://httpbin.org/get';
+    const method = request.get;
+    const endpoint = 'http://httpbin.org/get';
 
     // call shared behavior
     shouldCallAjaxRequest('ajaxGet', method, endpoint);
@@ -58,8 +58,8 @@ describe('apiUtils', () => {
 
   describe('ajaxPost', () => {
     // test variables
-    let method = request.post;
-    let endpoint = 'http://httpbin.org/post';
+    const method = request.post;
+    const endpoint = 'http://httpbin.org/post';
 
     // call shared behavior
     shouldCallAjaxRequest('ajaxPost', method, endpoint);
@@ -67,8 +67,8 @@ describe('apiUtils', () => {
 
   describe('ajaxDelete', () => {
     // test variables
-    let method = request.del;
-    let endpoint = 'http://httpbin.org/delete';
+    const method = request.del;
+    const endpoint = 'http://httpbin.org/delete';
 
     // call shared behavior
     shouldCallAjaxRequest('ajaxDelete', method, endpoint);
@@ -76,8 +76,8 @@ describe('apiUtils', () => {
 
   describe('ajaxPatch', () => {
     // test variables
-    let method = request.patch;
-    let endpoint = 'http://httpbin.org/patch';
+    const method = request.patch;
+    const endpoint = 'http://httpbin.org/patch';
 
     // call shared behavior
     shouldCallAjaxRequest('ajaxPatch', method, endpoint);
@@ -87,8 +87,8 @@ describe('apiUtils', () => {
   describe('_makeHeader', () => {
     describe('when it gets truthy token', () => {
       it('should return object has Authorization property', () => {
-        let token = 'token';
-        let expected = {Authorization: token};
+        const token = 'token';
+        const expected = {Authorization: token};
 
         assert(expected, api._makeHeader(token));
       });
@@ -96,8 +96,8 @@ describe('apiUtils', () => {
 
     describe('when it gets falsy token', () => {
       it('should return empty object', () => {
-        let token = undefined;
-        let expected = {};
+        const token = undefined;
+        const expected = {};
 
         assert(expected, api._makeHeader(token));
       });
@@ -113,13 +113,13 @@ describe('apiUtils', () => {
     describe('success call', () => {
       it('should return Promise object and call _makeHeader once with token', () => {
         // test variables
-        let method = request.get;
-        let endpoint = 'http://httpbin.org/get';
-        let params = {params: 'params'};
-        let token = 'token';
+        const method = request.get;
+        const endpoint = 'http://httpbin.org/get';
+        const params = {params: 'params'};
+        const token = 'token';
 
         // define spy
-        let spy = sinon.spy(api, '_makeHeader');
+        const spy = sinon.spy(api, '_makeHeader');
 
         // call test target method
         api._ajaxRequest(method, endpoint, params, token)
@@ -137,13 +137,13 @@ describe('apiUtils', () => {
     describe('failed call', () => {
       it('should return Promise object and call _makeHeader once with token', () => {
         // test variables
-        let method = request.post;
-        let endpoint = 'http://httpbin.org/get';
-        let params = {params: 'params'};
-        let token = 'token';
+        const method = request.post;
+        const endpoint = 'http://httpbin.org/get';
+        const params = {params: 'params'};
+        const token = 'token';
 
         // define spy
-        let spy = sinon.spy(api, '_makeHeader');
+        const spy = sinon.spy(api, '_makeHeader');
 
         // call test target method
         api._ajaxRequest(method, endpoint, params, token)
